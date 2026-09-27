@@ -1,0 +1,23 @@
+{
+  "name": "cryptotrace-fullstack",
+  "version": "1.0.0",
+  "description": "CryptoTrace — Full-stack Blockchain Fraud Intelligence & VASP Attribution Platform",
+  "scripts": {
+    "dev": "concurrently -n \"AI,BACKEND,FRONTEND\" -c \"magenta,blue,green\" \"npm run dev:ai\" \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "dev:frontend": "cd frontend && npm run dev",
+    "dev:backend": "cd backend && npm run dev",
+    "dev:server": "cd backend && npm run dev",
+    "dev:ai": "node run-ai.js",
+    "build": "cd frontend && npm run build",
+    "install:all": "cd backend && npm install && cd ../frontend && npm install",
+    "db:seed": "node database/seed.js",
+    "db:status": "node database/status.js"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "dependencies": {
+    "dotenv": "^18.0.2",
+    "mongoose": "^9.10.1"
+  }
+}

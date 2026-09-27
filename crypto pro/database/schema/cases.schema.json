@@ -1,0 +1,97 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "CryptoTraceInvestigationCase",
+  "description": "MongoDB Schema definition for Blockchain Forensic Investigation Cases",
+  "type": "object",
+  "required": ["caseId", "address", "chain", "fraudType", "score", "level"],
+  "properties": {
+    "caseId": {
+      "type": "string",
+      "description": "Unique identifier for the investigation case (e.g. CASE-ETH-0x8921)",
+      "unique": true,
+      "index": true
+    },
+    "address": {
+      "type": "string",
+      "description": "Target suspect cryptocurrency address investigated",
+      "index": true
+    },
+    "chain": {
+      "type": "string",
+      "description": "Target blockchain network (e.g. Ethereum, Bitcoin, Tron, Polygon, BNB Chain)"
+    },
+    "fraudType": {
+      "type": "string",
+      "description": "Primary detected typology (e.g. Multi-Hop Laundering, Flash Loan Attack, SIM Swap VASP Cashout)"
+    },
+    "score": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "Composite AI Risk Score (0-100)"
+    },
+    "level": {
+      "type": "string",
+      "enum": ["Low", "Medium", "High", "Critical"],
+      "description": "Severity tier assessed by ML Heuristic Risk Engine"
+    },
+    "txCount": {
+      "type": "integer",
+      "description": "Total ingested blockchain transactions"
+    },
+    "totalReceived": {
+      "type": "number",
+      "description": "Cumulative inflow volume in USD"
+    },
+    "totalSent": {
+      "type": "number",
+      "description": "Cumulative outflow volume in USD"
+    },
+    "victimAddress": {
+      "type": "string",
+      "description": "Identified source victim or exploit smart contract origin"
+    },
+    "exchangeDepositAddress": {
+      "type": "string",
+      "description": "Identified VASP/Exchange cashout deposit destination"
+    },
+    "factors": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "t": { "type": "string", "description": "Factor description" },
+          "w": { "type": "string", "description": "Factor weight label e.g. +18" },
+          "weight": { "type": "number", "description": "Numeric weight value" },
+          "cat": { "type": "string", "description": "Category e.g. typology, vasp, velocity" }
+        }
+      }
+    },
+    "aiFindings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "t": { "type": "string", "description": "Finding statement" },
+          "c": { "type": "number", "description": "AI confidence percentage (0-100)" }
+        }
+      }
+    },
+    "exchange": {
+      "type": "object",
+      "properties": {
+        "name": { "type": "string", "description": "Identified VASP / Centralized Exchange name" },
+        "clusterId": { "type": "string", "description": "Identified on-chain exchange cluster ID" },
+        "type": { "type": "string", "description": "Exchange type (e.g. CEX, OTC Desk, High-Risk Swap)" },
+        "region": { "type": "string", "description": "VASP operational jurisdiction" },
+        "jurisdictionRisk": { "type": "string", "description": "Jurisdiction AML rating" },
+        "confidence": { "type": "number", "description": "Attribution confidence score (0-100)" },
+        "status": { "type": "string", "description": "Attribution status (CONFIRMED, SUSPECTED)" }
+      }
+    },
+    "status": {
+      "type": "string",
+      "default": "Analyzed"
+    }
+  }
+}

@@ -1,0 +1,152 @@
+[
+  {
+    "caseId": "CASE-ETH-0x8921-LAZ",
+    "address": "0x8921b03378907865219087110192837465912837",
+    "chain": "Ethereum",
+    "fraudType": "Multi-Hop Laundering & Mixer Exit",
+    "score": 94,
+    "level": "Critical",
+    "txCount": 142,
+    "totalReceived": 3840000,
+    "totalSent": 3825000,
+    "victimAddress": "0x4b10293847561029384756102938475610293847",
+    "exchangeDepositAddress": "0x71c0293847561029384756102938475610293847",
+    "confidence": 92,
+    "status": "Analyzed",
+    "factors": [
+      { "t": "Direct fund hop from sanctioned Tornado.Cash contract", "w": "+35", "weight": 35, "cat": "typology" },
+      { "t": "Rapid peeling-chain dispersal (<4 mins between hops)", "w": "+25", "weight": 25, "cat": "velocity" },
+      { "t": "Attributed to Lazarus Group APT cluster heuristic", "w": "+20", "weight": 20, "cat": "apt" },
+      { "t": "Final deposit hop terminating at NovaSwap Global VASP", "w": "+14", "weight": 14, "cat": "vasp" }
+    ],
+    "aiFindings": [
+      { "t": "Algorithmic peeling chain pattern detected with 94.8% confidence match against known state-sponsored laundering playbooks.", "c": 95 },
+      { "t": "Outflow batching split exactly 120 seconds after receiving stolen funds from exploit bridge.", "c": 92 },
+      { "t": "VASP attribution cluster confirms deposit address belongs to NovaSwap Global hot wallet cluster #04.", "c": 89 }
+    ],
+    "exchange": {
+      "name": "NovaSwap Global",
+      "clusterId": "CL-NOVASWAP-0491",
+      "type": "Centralized Spot Exchange (CEX)",
+      "region": "Seychelles (Offshore)",
+      "jurisdictionRisk": "High",
+      "complianceLevel": "Tier 2 Non-Strict KYC",
+      "confidence": 91,
+      "status": "CONFIRMED",
+      "priorFilings": 18,
+      "supportingEvidence": [
+        "Deposit memo match on 3 related sub-accounts",
+        "Sweeper wallet sweep frequency matches NovaSwap internal omnibus batch",
+        "Etherscan tagged NovaSwap deposit proxy"
+      ]
+    },
+    "intermediaries": [
+      { "address": "0x1111a12384756102938475610293847561029384", "role": "Peeling Intermediary 1", "txCount": 12, "amount": 1920000, "risk": "Critical", "reason": "High-velocity pass-through" },
+      { "address": "0x2222b23384756102938475610293847561029384", "role": "Peeling Intermediary 2", "txCount": 8, "amount": 960000, "risk": "High", "reason": "Rapid fan-out" },
+      { "address": "0x3333c34384756102938475610293847561029384", "role": "Consolidation Hub", "txCount": 24, "amount": 945000, "risk": "Critical", "reason": "Batch sweep to VASP" }
+    ],
+    "counterparties": [
+      { "address": "0x4b10293847561029384756102938475610293847", "label": "Exploit Smart Contract (Victim)", "type": "victim", "txCount": 1, "totalIn": 3840000, "totalOut": 0, "risk": "Low" },
+      { "address": "0x71c0293847561029384756102938475610293847", "label": "NovaSwap Deposit Omnibus", "type": "exchange", "txCount": 4, "totalIn": 0, "totalOut": 3825000, "risk": "High" }
+    ],
+    "crossChain": [
+      { "from": "Ethereum", "to": "BNB Chain", "bridge": "Stargate Finance", "amount": 1200000, "hash": "0x9812739812739812739182739182739182739182739182739182739182739182", "risk": "High" }
+    ],
+    "recommendations": [
+      "Submit Urgent Statutory Freeze Request (MLAT / 28 U.S.C. § 1782) to NovaSwap Compliance Legal Operations.",
+      "Flag cluster ID CL-NOVASWAP-0491 across Chainalysis / Elliptic intelligence databases.",
+      "Subpoena account creation IP logs, KYC documents, and device fingerprints associated with deposit address 0x71c02938."
+    ],
+    "sampleSize": 142
+  },
+  {
+    "caseId": "CASE-BTC-bc1q-RANSOM",
+    "address": "bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh",
+    "chain": "Bitcoin",
+    "fraudType": "Ransomware Extortion & UTXO CoinJoin",
+    "score": 88,
+    "level": "High",
+    "txCount": 68,
+    "totalReceived": 1450000,
+    "totalSent": 1420000,
+    "victimAddress": "1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa",
+    "exchangeDepositAddress": "bc1qzenithvaspdeposit83921839218392183921",
+    "confidence": 88,
+    "status": "Analyzed",
+    "factors": [
+      { "t": "Identified LockBit ransomware ransom payment inbound", "w": "+40", "weight": 40, "cat": "ransomware" },
+      { "t": "Equal-output Wasabi CoinJoin UTXO mixing rounds", "w": "+28", "weight": 28, "cat": "mixer" },
+      { "t": "Consolidation into single OTC broker cluster", "w": "+20", "weight": 20, "cat": "vasp" }
+    ],
+    "aiFindings": [
+      { "t": "Unspent Transaction Output (UTXO) graphs show 5 successive rounds of Wasabi Wallet Whirlpool mixing.", "c": 91 },
+      { "t": "Sybil clustering links change outputs to secondary ransom address active in Q3 cyber operations.", "c": 87 }
+    ],
+    "exchange": {
+      "name": "ZenithPay VASP",
+      "clusterId": "CL-ZENITH-8832",
+      "type": "Institutional OTC Desk",
+      "region": "United Arab Emirates (VARA)",
+      "jurisdictionRisk": "Medium",
+      "complianceLevel": "Regulated OTC",
+      "confidence": 88,
+      "status": "CONFIRMED",
+      "priorFilings": 7,
+      "supportingEvidence": [
+        "Institutional settlement wallet cluster match",
+        "Public VARA licensed OTC trading desk"
+      ]
+    },
+    "intermediaries": [],
+    "counterparties": [],
+    "crossChain": [],
+    "recommendations": [
+      "File Suspicious Activity Report (SAR) with FinCEN referencing Ransomware Typology #FIN-2021-A004.",
+      "Serve preservation request upon ZenithPay VASP compliance department regarding settlement address bc1qzenith."
+    ],
+    "sampleSize": 68
+  },
+  {
+    "caseId": "CASE-TRX-TT12-PIGBUTCH",
+    "address": "TT12345678901234567890123456789012",
+    "chain": "Tron",
+    "fraudType": "Investment Scam / Pig Butchering",
+    "score": 79,
+    "level": "High",
+    "txCount": 310,
+    "totalReceived": 890000,
+    "totalSent": 885000,
+    "victimAddress": "TE45678901234567890123456789012345",
+    "exchangeDepositAddress": "TM78901234567890123456789012345678",
+    "confidence": 85,
+    "status": "Analyzed",
+    "factors": [
+      { "t": "Repeated micro-inflows from retail victim accounts", "w": "+30", "weight": 30, "cat": "fraud" },
+      { "t": "Immediate TRC-20 USDT aggregation sweep", "w": "+25", "weight": 25, "cat": "velocity" },
+      { "t": "Counterparty linked to Southeast Asian scam compound cluster", "w": "+24", "weight": 24, "cat": "cluster" }
+    ],
+    "aiFindings": [
+      { "t": "Inflow pattern perfectly matches romance/investment scam aggregation model with 300+ retail victims.", "c": 89 },
+      { "t": "USDT TRC-20 tokens are forwarded to OTC liquidity pools within 45 seconds of deposit.", "c": 86 }
+    ],
+    "exchange": {
+      "name": "MeridianCoin OTC",
+      "clusterId": "CL-MERIDIAN-5512",
+      "type": "P2P / High-Risk OTC",
+      "region": "Hong Kong / Southeast Asia",
+      "jurisdictionRisk": "High",
+      "confidence": 83,
+      "status": "SUSPECTED",
+      "priorFilings": 12,
+      "supportingEvidence": ["TRC-20 high-frequency multi-sig wallet omnibus"]
+    },
+    "intermediaries": [],
+    "counterparties": [],
+    "crossChain": [],
+    "recommendations": [
+      "Contact Tether Compliance (freeze@tether.to) to blacklist Tron address TT12345678901234567890123456789012.",
+      "Submit intelligence referral to FBI IC3 Pig Butchering Task Force."
+    ],
+    "sampleSize": 310
+  }
+]

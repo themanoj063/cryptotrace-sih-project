@@ -1,0 +1,62 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "CryptoTraceTransactionEvidence",
+  "description": "MongoDB Schema definition for Ingested Blockchain Transaction Records",
+  "type": "object",
+  "required": ["caseId", "hash", "block", "timestamp", "direction", "asset", "amountUsd", "counterparty"],
+  "properties": {
+    "caseId": {
+      "type": "string",
+      "description": "Foreign key reference to Case caseId",
+      "index": true
+    },
+    "hash": {
+      "type": "string",
+      "description": "Cryptographic blockchain transaction hash",
+      "index": true
+    },
+    "block": {
+      "type": "integer",
+      "description": "Block height where transaction was mined"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Block timestamp"
+    },
+    "direction": {
+      "type": "string",
+      "enum": ["IN", "OUT"],
+      "description": "Fund flow direction relative to investigated subject"
+    },
+    "asset": {
+      "type": "string",
+      "description": "Cryptocurrency or token ticker (e.g. ETH, BTC, USDT, USDC)"
+    },
+    "amountUsd": {
+      "type": "number",
+      "description": "Historical or current fiat valuation in USD"
+    },
+    "counterparty": {
+      "type": "string",
+      "description": "Sender (if IN) or Receiver (if OUT) wallet address",
+      "index": true
+    },
+    "counterpartyLabel": {
+      "type": "string",
+      "description": "Forensic intelligence label (e.g. Victim Smart Contract, High-Risk Mixer, Exchange Deposit Hot Wallet)"
+    },
+    "counterpartyType": {
+      "type": "string",
+      "description": "Entity category (e.g. exchange, mixer, victim, intermediary, bridge)"
+    },
+    "riskFlag": {
+      "type": "boolean",
+      "description": "Whether transaction triggered an AML or ML risk heuristic rule"
+    },
+    "status": {
+      "type": "string",
+      "default": "Confirmed"
+    }
+  }
+}

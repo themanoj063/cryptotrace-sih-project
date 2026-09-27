@@ -1,0 +1,40 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "CryptoTraceForensicAlert",
+  "description": "MongoDB Schema definition for Real-Time AML and Typology Risk Alerts",
+  "type": "object",
+  "required": ["caseId", "wallet", "sev", "msg"],
+  "properties": {
+    "caseId": {
+      "type": "string",
+      "description": "Case associated with alert",
+      "index": true
+    },
+    "wallet": {
+      "type": "string",
+      "description": "Monitored cryptocurrency address",
+      "index": true
+    },
+    "sev": {
+      "type": "string",
+      "enum": ["CRITICAL", "HIGH", "MEDIUM", "INFO"],
+      "description": "Severity grade"
+    },
+    "msg": {
+      "type": "string",
+      "description": "Human-readable alert message"
+    },
+    "reason": {
+      "type": "string",
+      "description": "Root cause or specific heuristic trigger"
+    },
+    "action": {
+      "type": "string",
+      "description": "Recommended law enforcement or investigator action (e.g. Issue Freeze Notice, File SAR, Monitor Hop)"
+    },
+    "time": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

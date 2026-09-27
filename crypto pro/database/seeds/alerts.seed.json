@@ -1,0 +1,34 @@
+[
+  {
+    "caseId": "CASE-ETH-0x8921-LAZ",
+    "wallet": "0x8921b03378907865219087110192837465912837",
+    "sev": "CRITICAL",
+    "msg": "Sanctioned entity interaction: 120.5 ETH received from Tornado.Cash router",
+    "reason": "OFAC SDN List match (Tornado.Cash router 0xd90e2f925da726b50c4ed8d0fb90ad053324f31b)",
+    "action": "Immediate freeze notice generation required for NovaSwap omnibus"
+  },
+  {
+    "caseId": "CASE-ETH-0x8921-LAZ",
+    "wallet": "0x3333c34384756102938475610293847561029384",
+    "sev": "HIGH",
+    "msg": "Abnormal transfer velocity: $945,000 consolidated across 3 hops in 14 minutes",
+    "reason": "Velocity exceeds 99th percentile baseline for standard non-custodial wallets",
+    "action": "Flag intermediary cluster as money-mule consolidation node"
+  },
+  {
+    "caseId": "CASE-BTC-bc1q-RANSOM",
+    "wallet": "bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh",
+    "sev": "CRITICAL",
+    "msg": "CoinJoin mixer exit detected: 14.2 BTC consolidated into OTC settlement hot wallet",
+    "reason": "Wasabi Whirlpool round completion pattern",
+    "action": "Dispatch preservation letter to ZenithPay VASP compliance desk"
+  },
+  {
+    "caseId": "CASE-TRX-TT12-PIGBUTCH",
+    "wallet": "TT12345678901234567890123456789012",
+    "sev": "HIGH",
+    "msg": "High-frequency retail victim aggregation: 42 deposits received in past 60 minutes",
+    "reason": "Retail investor scam aggregation pattern",
+    "action": "Request Tether emergency smart contract freeze"
+  }
+]
